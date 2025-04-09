@@ -1,0 +1,18 @@
+{
+    "hurakan": {
+        "nome": "hurakan",
+        "voltas": [
+            10.43, 30.56, 45.9
+        ],
+        "melhorTempo": 10.43,
+        "terminou": false
+    },
+    "baia": {
+        "nome": "baia",
+        "voltas": [
+            10.43, 30.56, 45.9
+        ],
+        "melhorTempo": 10.43,
+        "terminou": false
+    }
+}

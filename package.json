@@ -1,0 +1,14 @@
+{
+  "name": "lideranca",
+  "version": "1.0.0",
+  "description": "Tabela de lideranca para o time Hurakan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lucas",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
