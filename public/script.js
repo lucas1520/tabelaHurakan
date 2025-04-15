@@ -2,12 +2,16 @@ const construir = (nome, nVoltas) => {
     const container = document.createElement("div")
 
     container.innerHTML = `
-        <div style="border: 1px solid black;">
-            ${nome}
-            <div>
-                <p id=${nome}>Voltas: ${nVoltas}</p>
-            </div>
-            <button onclick=adicionar('${nome}')>+</button>
+        <div style="border: 1px solid black;" class="time" onclick="adicionar('${nome}')">
+            <span class="top">
+                <h2>${nome}</h2>
+                <p class="tempo">00:00:00</p>
+            </span>
+            <hr class="separacao">
+            <span class="bottom">
+                <p id=volta_${nome} class="voltas">Voltas: ${nVoltas}</p>
+                <button onclick="event.stopPropagation(); alert('foi')">-</button>
+            </span>
         </div>
     `
 
@@ -29,7 +33,7 @@ const adicionar = (nome) => {
         }).
         then((resp) => {
             console.log(resp)
-            document.getElementById(nome).textContent = `Voltas: ${resp}`
+            document.getElementById("volta_" + nome).textContent = `Voltas: ${resp}`
         })
 }
 

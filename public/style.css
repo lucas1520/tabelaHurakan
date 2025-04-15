@@ -6,6 +6,11 @@ p, h2 {
     width: 25vw;
     padding: 2vh;
     font-size: large;
+    margin-bottom: 2vh;
+}
+
+.time:hover {
+    cursor: pointer;
 }
 
 .separacao {
