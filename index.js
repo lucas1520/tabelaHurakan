@@ -1,25 +1,20 @@
 const express = require("express")
 const path = require("path")
 const fs = require("fs").promises
+const http = require("http")
+const { Server } = require("socket.io")
 
 const app = express()
+const server = http.createServer(app);
+const io = new Server(server)
+
+io.on("connection", (socket) => {
+    console.log(`Conexao: ${socket.id}`)
+})
+
 const port = 3000
 
-let options = {
-    root: path.join("public")
-}
-
-app.get("/", (req, res) => {
-    res.sendFile("index.html", options)
-})
-
-app.get("/script.js", (req, res) => {
-    res.status(200).sendFile(path.resolve(__dirname, "public/script.js"));
-});
-
-app.get("/style.css", (req, res) => {
-    res.status(200).sendFile(path.resolve(__dirname, "public/style.css"))
-})
+app.use(express.static('public'));
 
 app.get("/pegarDados", async (req, res) => {
     let data = await fs.readFile("dados.json", "utf-8")
@@ -45,6 +40,12 @@ app.get("/addVolta", async (req, res) => {
     fs.writeFile("dados.json", JSON.stringify(info, null, 2), "utf-8")
 })
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Escutando porta: ${port}`)
 })
+
+let t = 0;
+setInterval(() => {
+    t++;
+    io.emit("tempo", t)
+}, 250)

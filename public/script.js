@@ -1,3 +1,10 @@
+const socket = io()
+
+socket.on("tempo", (t) => {
+    document.getElementById("tempoGeral").textContent = t / 4
+    // console.log(t / 4)
+})
+
 const construir = (nome, nVoltas) => {
     const container = document.createElement("div")
 
