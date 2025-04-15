@@ -1,18 +1,14 @@
 {
-    "hurakan": {
-        "nome": "hurakan",
-        "voltas": [
-            10.43, 30.56, 45.9
-        ],
-        "melhorTempo": 10.43,
-        "terminou": false
-    },
-    "baia": {
-        "nome": "baia",
-        "voltas": [
-            10.43, 30.56, 45.9
-        ],
-        "melhorTempo": 10.43,
-        "terminou": false
-    }
+  "hurakan": {
+    "id": 1,
+    "nVoltas": 68,
+    "voltas": [],
+    "melhorTempo": 30.32
+  },
+  "baia": {
+    "id": 2,
+    "nVoltas": 52,
+    "voltas": [],
+    "melhorTempo": 34.2
+  }
 }
