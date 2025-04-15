@@ -17,6 +17,10 @@ app.get("/script.js", (req, res) => {
     res.status(200).sendFile(path.resolve(__dirname, "public/script.js"));
 });
 
+app.get("/style.css", (req, res) => {
+    res.status(200).sendFile(path.resolve(__dirname, "public/style.css"))
+})
+
 app.get("/pegarDados", async (req, res) => {
     let data = await fs.readFile("dados.json", "utf-8")
     // Ate entao o data e uma string
