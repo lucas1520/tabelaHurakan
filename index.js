@@ -33,10 +33,12 @@ const inicio = process.hrtime.bigint()
 
 let times = {
     hurakan: {
-        tempo: inicio
+        tempoInicialVolta: inicio,
+        tempoVolta: 0
     },
     baia: {
-        tempo: inicio
+        tempoInicialVolta: inicio,
+        tempoVolta: 0
     }
 }
 
@@ -51,12 +53,12 @@ app.get("/addVolta", async (req, res) => {
     info[nomeV].nVoltas++
 
     const tempoVolta = process.hrtime.bigint()
-    const diff = tempoVolta - times[nomeV].tempo
+    const diff = tempoVolta - times[nomeV].tempoInicialVolta
     const diffConvertido = Number(diff) / 1e9
     
     info[nomeV].voltas.push(diffConvertido)
 
-    times[nomeV].tempo = process.hrtime.bigint();
+    times[nomeV].tempoInicialVolta = process.hrtime.bigint();
 
     if (diffConvertido < info[nomeV].melhorTempo) {
         info[nomeV].melhorTempo = diffConvertido
