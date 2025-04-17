@@ -8,13 +8,17 @@ const app = express()
 const server = http.createServer(app);
 const io = new Server(server)
 
+app.use(express.static('public'));
+
 io.on("connection", (socket) => {
     console.log(`Conexao: ${socket.id}`)
 })
 
 const port = 3000
+server.listen(port, () => {
+    console.log(`Escutando porta: ${port}`)
+})
 
-app.use(express.static('public'));
 
 app.get("/pegarDados", async (req, res) => {
     let data = await fs.readFile("dados.json", "utf-8")
@@ -61,12 +65,6 @@ app.get("/addVolta", async (req, res) => {
     res.send(String(info[nomeV].nVoltas))
     fs.writeFile("dados.json", JSON.stringify(info, null, 2), "utf-8")
 })
-
-server.listen(port, () => {
-    console.log(`Escutando porta: ${port}`)
-})
-
-console.log(`Tempo: ${Number(inicio) / 1e9}`)
 
 setInterval(() => {
     const agora = process.hrtime.bigint()
