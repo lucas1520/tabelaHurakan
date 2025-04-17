@@ -44,8 +44,12 @@ server.listen(port, () => {
     console.log(`Escutando porta: ${port}`)
 })
 
-let t = 0;
+const inicio = process.hrtime.bigint()
+console.log(`Tempo: ${Number(inicio) / 1e9}`)
+
 setInterval(() => {
-    t++;
-    io.emit("tempo", t)
+    const agora = process.hrtime.bigint()
+    const diff = agora - inicio
+    // console.log(Number(diff) / 1e9)
+    io.emit("tempo", Number(diff) / 1e9)
 }, 250)

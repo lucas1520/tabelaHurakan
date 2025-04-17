@@ -1,8 +1,7 @@
 const socket = io()
 
 socket.on("tempo", (t) => {
-    document.getElementById("tempoGeral").textContent = t / 4
-    // console.log(t / 4)
+    document.getElementById("tempoGeral").textContent = t
 })
 
 const construir = (nome, nVoltas) => {
