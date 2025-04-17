@@ -73,4 +73,12 @@ setInterval(() => {
     const diff = agora - inicio
     // console.log(Number(diff) / 1e9)
     io.emit("tempo", Number(diff) / 1e9)
-}, 250)
+
+    Object.entries(times).forEach((elem) => {
+        elem[1].tempoVolta = agora - elem[1].tempoInicialVolta
+        // Number(elem[1].tempoVolta) / 1e9
+        io.emit("tempoTime", elem[0], Number(elem[1].tempoVolta) / 1e9)
+        // console.log(elem)
+    })
+    
+}, 100)

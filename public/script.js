@@ -4,6 +4,10 @@ socket.on("tempo", (t) => {
     document.getElementById("tempoGeral").textContent = t
 })
 
+socket.on("tempoTime", (nome, tempo) => {
+    document.getElementById(`tempo_${nome}`).textContent = tempo
+})
+
 const construir = (nome, nVoltas) => {
     const container = document.createElement("div")
 
@@ -11,7 +15,7 @@ const construir = (nome, nVoltas) => {
         <div style="border: 1px solid black;" class="time" onclick="adicionar('${nome}')">
             <span class="top">
                 <h2>${nome}</h2>
-                <p class="tempo">00:00:00</p>
+                <p class="tempo" id=tempo_${nome}>00:00:00</p>
             </span>
             <hr class="separacao">
             <span class="bottom">
