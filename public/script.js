@@ -29,13 +29,7 @@ const construir = (nome, nVoltas) => {
 
 }
 
-const colocar = (nome, nVoltas) => {
-    const divNome = document.getElementById("nome").textContent = nome
-    const divVoltas = document.getElementById("voltas").textContent = nVoltas
-}
-
 const adicionar = (nome) => {
-    // alert(nome)
     fetch(`/addVolta?nome=${encodeURIComponent(nome)}`).
         then((res) => {
             console.log(res)

@@ -1,5 +1,4 @@
 const express = require("express")
-const path = require("path")
 const fs = require("fs").promises
 const http = require("http")
 const { Server } = require("socket.io")
@@ -18,7 +17,6 @@ const port = 3000
 server.listen(port, () => {
     console.log(`Escutando porta: ${port}`)
 })
-
 
 app.get("/pegarDados", async (req, res) => {
     let data = await fs.readFile("dados.json", "utf-8")
@@ -71,14 +69,11 @@ app.get("/addVolta", async (req, res) => {
 setInterval(() => {
     const agora = process.hrtime.bigint()
     const diff = agora - inicio
-    // console.log(Number(diff) / 1e9)
+
     io.emit("tempo", Number(diff) / 1e9)
 
     Object.entries(times).forEach((elem) => {
         elem[1].tempoVolta = agora - elem[1].tempoInicialVolta
-        // Number(elem[1].tempoVolta) / 1e9
         io.emit("tempoTime", elem[0], Number(elem[1].tempoVolta) / 1e9)
-        // console.log(elem)
     })
-    
 }, 100)
