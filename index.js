@@ -25,16 +25,33 @@ app.get("/pegarDados", async (req, res) => {
     res.send(data)
 })
 
+const inicio = process.hrtime.bigint()
+
+let times = {
+    hurakan: {
+        tempo: inicio
+    },
+    baia: {
+        tempo: inicio
+    }
+}
+
 app.get("/addVolta", async (req, res) => {
     let info = await fs.readFile("dados.json", "utf-8")
     // Info e uma string JSON
     info = JSON.parse(info)
     console.log(info)
-    console.log(info.hurakan)
     // Info e um objeto js
     const nomeV = req.query.nome
 
     info[nomeV].nVoltas++
+
+    const tempoVolta = process.hrtime.bigint()
+    const diff = tempoVolta - times[nomeV].tempo
+    
+    info[nomeV].voltas.push(Number(diff) / 1e9)
+
+    times[nomeV].tempo = process.hrtime.bigint();
 
     res.send(String(info[nomeV].nVoltas))
     fs.writeFile("dados.json", JSON.stringify(info, null, 2), "utf-8")
@@ -44,7 +61,6 @@ server.listen(port, () => {
     console.log(`Escutando porta: ${port}`)
 })
 
-const inicio = process.hrtime.bigint()
 console.log(`Tempo: ${Number(inicio) / 1e9}`)
 
 setInterval(() => {
