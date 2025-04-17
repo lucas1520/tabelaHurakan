@@ -48,10 +48,15 @@ app.get("/addVolta", async (req, res) => {
 
     const tempoVolta = process.hrtime.bigint()
     const diff = tempoVolta - times[nomeV].tempo
+    const diffConvertido = Number(diff) / 1e9
     
-    info[nomeV].voltas.push(Number(diff) / 1e9)
+    info[nomeV].voltas.push(diffConvertido)
 
     times[nomeV].tempo = process.hrtime.bigint();
+
+    if (diffConvertido < info[nomeV].melhorTempo) {
+        info[nomeV].melhorTempo = diffConvertido
+    }
 
     res.send(String(info[nomeV].nVoltas))
     fs.writeFile("dados.json", JSON.stringify(info, null, 2), "utf-8")
