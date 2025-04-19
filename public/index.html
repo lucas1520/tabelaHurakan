@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/list.css">
+    <link rel="stylesheet" href="style/tempos.css">
+    <link rel="stylesheet" href="style/global.css">
+    <link rel="stylesheet" href="style/layout.css">
     <title>Tabela</title>
 </head>
 <body>
@@ -11,16 +14,19 @@
 
     <div id="list">
         <div style="border: 1px solid black;" class="time">
-            <span class="top">
+            <span class="time__top">
                 <h2>Hurakan</h2>
-                <p class="tempo">00:00:00</p>
+                <p class="time__tempo">00:00:00</p>
             </span>
             <hr class="separacao">
-            <span class="bottom">
-                <p id=${nome} class="voltas">Voltas: 00</p>
+            <span class="time__bottom">
+                <p id=${nome} class="time__voltas">Voltas: 00</p>
                 <button>-</button>
             </span>
         </div>
+    </div>
+    <div id="tempos">
+        <p>oi</p>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>

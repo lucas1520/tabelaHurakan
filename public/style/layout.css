@@ -1,0 +1,29 @@
+
+
+.time {
+    width: 25vw;
+    padding: 2vh;
+    margin-bottom: 2vh;
+}
+
+.separacao {
+    margin-left: -2vh;
+    margin-right: -2vh;
+}
+
+.time__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.time__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.time__bottom > button {
+    width: 30%;
+    border-radius: 5px;
+}

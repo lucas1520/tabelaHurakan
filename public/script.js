@@ -13,13 +13,13 @@ const construir = (nome, nVoltas) => {
 
     container.innerHTML = `
         <div style="border: 1px solid black;" class="time" onclick="adicionar('${nome}')">
-            <span class="top">
+            <span class="time__top">
                 <h2>${nome}</h2>
-                <p class="tempo" id=tempo_${nome}>00:00:00</p>
+                <p class="time__tempo" id=tempo_${nome}>00:00:00</p>
             </span>
             <hr class="separacao">
-            <span class="bottom">
-                <p id=volta_${nome} class="voltas">Voltas: ${nVoltas}</p>
+            <span class="time__bottom">
+                <p id=volta_${nome} class="time__voltas">Voltas: ${nVoltas}</p>
                 <button onclick="event.stopPropagation(); alert('foi')">-</button>
             </span>
         </div>

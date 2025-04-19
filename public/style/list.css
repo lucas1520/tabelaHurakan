@@ -1,0 +1,20 @@
+.time {
+    font-size: large;
+}
+
+.time:hover {
+    cursor: pointer;
+}
+
+.time__tempo {
+    font-size: x-large;
+}
+
+.time__voltas {
+    font-size: x-large;
+}
+
+.time__bottom > button {
+    font-size: x-large;
+
+}
