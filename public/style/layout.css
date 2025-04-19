@@ -1,9 +1,16 @@
-
+#list {
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2vh;
+    padding: 1vh;
+    max-height: 90vh;
+}
 
 .time {
-    width: 25vw;
+    width: 18vw;
     padding: 2vh;
-    margin-bottom: 2vh;
+    /* margin-bottom: 2vh; */
 }
 
 .separacao {
@@ -26,4 +33,9 @@
 .time__bottom > button {
     width: 30%;
     border-radius: 5px;
+}
+
+#tempos {
+    display: inline-flex;
+    flex-direction: column;
 }

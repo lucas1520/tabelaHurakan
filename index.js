@@ -37,6 +37,18 @@ let times = {
     baia: {
         tempoInicialVolta: inicio,
         tempoVolta: 0
+    },
+    HolandesVoador: {
+        tempoInicialVolta: inicio,
+        tempoVolta: 0
+    },
+    UFSC: {
+        tempoInicialVolta: inicio,
+        tempoVolta: 0
+    },
+    IFSC: {
+        tempoInicialVolta: inicio,
+        tempoVolta: 0
     }
 }
 
