@@ -8,7 +8,7 @@
 }
 
 .time {
-    width: 18vw;
+    width: 25vw;
     padding: 2vh;
     /* margin-bottom: 2vh; */
 }
@@ -22,6 +22,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.time__top > h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* word-wrap: break-word; */
 }
 
 .time__bottom {
