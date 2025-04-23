@@ -23,20 +23,20 @@ const formatarTempo = (tempo) => {
     return format
 }
 
-const construir = (nome, nVoltas) => {
+const construir = (nome, nVoltas, nomeId) => {
     const container = document.createElement("div")
 
     nVoltas = String(nVoltas).padStart(2, "0")
 
     container.innerHTML = `
-        <div style="border: 1px solid black;" class="time" onclick="adicionar('${nome}')">
+        <div style="border: 1px solid black;" class="time" onclick="adicionar('${nomeId}')">
             <span class="time__top">
                 <h2>${nome}</h2>
-                <p class="time__tempo" id=tempo_${nome}>00:00:00</p>
+                <p class="time__tempo" id=tempo_${nomeId}>00:00:00</p>
             </span>
             <hr class="separacao">
             <span class="time__bottom">
-                <p id=volta_${nome} class="time__voltas">Voltas: ${nVoltas}</p>
+                <p id=volta_${nomeId} class="time__voltas">Voltas: ${nVoltas}</p>
                 <button onclick="event.stopPropagation(); alert('foi')">-</button>
             </span>
         </div>
@@ -46,15 +46,15 @@ const construir = (nome, nVoltas) => {
 
 }
 
-const adicionar = (nome) => {
-    fetch(`/addVolta?nome=${encodeURIComponent(nome)}`).
+const adicionar = (nomeId) => {
+    fetch(`/addVolta?nome=${encodeURIComponent(nomeId)}`).
         then((res) => {
             console.log(res)
             return res.json()
         }).
         then((resp) => {
             console.log(resp)
-            document.getElementById("volta_" + nome).textContent = `Voltas: ${resp}`
+            document.getElementById("volta_" + nomeId).textContent = `Voltas: ${String(resp).padStart(2, "0")}`
         })
 }
 
@@ -71,7 +71,7 @@ fetch("/pegarDados").
         console.log(a)
         a.forEach((elem) => {
             console.log(elem)
-            construir(elem[0], elem[1].nVoltas)
+            construir(elem[1].nome, elem[1].nVoltas, elem[0])
 
         })
     })
