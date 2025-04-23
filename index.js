@@ -38,15 +38,15 @@ let times = {
         tempoInicialVolta: inicio,
         tempoVolta: 0
     },
-    HolandesVoador: {
+    holandes: {
         tempoInicialVolta: inicio,
         tempoVolta: 0
     },
-    UFSC: {
+    ufsc: {
         tempoInicialVolta: inicio,
         tempoVolta: 0
     },
-    IFSC: {
+    ifsc: {
         tempoInicialVolta: inicio,
         tempoVolta: 0
     }

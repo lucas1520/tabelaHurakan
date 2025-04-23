@@ -4,10 +4,8 @@ socket.on("tempo", (t) => {
     document.getElementById("tempoGeral").textContent = formatarTempo(t)
 })
 
-socket.on("tempoTime", (nome, tempo) => {
-    // document.getElementById(`tempo_${nome}`).textContent = tempo
-
-    document.getElementById(`tempo_${nome}`).textContent = formatarTempo(tempo)
+socket.on("tempoTime", (nomeId, tempo) => {
+    document.getElementById(`tempo_${nomeId}`).textContent = formatarTempo(tempo)
 })
 
 const formatarTempo = (tempo) => {
@@ -19,7 +17,7 @@ const formatarTempo = (tempo) => {
     const format = String(minutos).padStart(2, "0") + ":" +
         String(segundos).padStart(2, "0") + "." +
         String(milissegundos).padStart(3, "0")
-    // return `${minutos}:${segundos}:${milissegundos}`
+
     return format
 }
 
@@ -43,7 +41,6 @@ const construir = (nome, nVoltas, nomeId) => {
     `
 
     document.getElementById("list").append(container)
-
 }
 
 const adicionar = (nomeId) => {
@@ -57,8 +54,6 @@ const adicionar = (nomeId) => {
             document.getElementById("volta_" + nomeId).textContent = `Voltas: ${String(resp).padStart(2, "0")}`
         })
 }
-
-
 
 fetch("/pegarDados").
     then((response) => {
