@@ -55,6 +55,10 @@ const adicionar = (nomeId) => {
         })
 }
 
+const iniciar = () => {
+    fetch("/iniciar")
+}
+
 fetch("/pegarDados").
     then((response) => {
         console.log(response)

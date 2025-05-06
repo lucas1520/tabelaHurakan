@@ -27,7 +27,7 @@ app.get("/pegarDados", async (req, res) => {
     res.send(data)
 })
 
-const inicio = process.hrtime.bigint()
+let inicio
 
 let times = {
     hurakan: {
@@ -78,14 +78,23 @@ app.get("/addVolta", async (req, res) => {
     fs.writeFile("dados.json", JSON.stringify(info, null, 2), "utf-8")
 })
 
-setInterval(() => {
-    const agora = process.hrtime.bigint()
-    const diff = agora - inicio
-
-    io.emit("tempo", Number(diff) / 1e9)
+app.get("/iniciar", (req, res) => {
+    inicio = process.hrtime.bigint()
 
     Object.entries(times).forEach((elem) => {
-        elem[1].tempoVolta = agora - elem[1].tempoInicialVolta
-        io.emit("tempoTime", elem[0], Number(elem[1].tempoVolta) / 1e9)
+        elem[1].tempoInicialVolta = inicio
     })
-}, 100)
+
+    setInterval(() => {
+        const agora = process.hrtime.bigint()
+        const diff = agora - inicio
+    
+        io.emit("tempo", Number(diff) / 1e9)
+    
+        Object.entries(times).forEach((elem) => {
+            elem[1].tempoVolta = agora - elem[1].tempoInicialVolta
+            io.emit("tempoTime", elem[0], Number(elem[1].tempoVolta) / 1e9)
+        })
+    }, 100)
+})
+

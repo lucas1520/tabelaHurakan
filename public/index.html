@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style/tempos.css">
     <link rel="stylesheet" href="style/global.css">
     <link rel="stylesheet" href="style/layout.css">
+    <link rel="stylesheet" href="style/bottom.css">
     <title>Tabela</title>
 </head>
 <body>
@@ -14,22 +15,27 @@
         <h1 id="tempoGeral">00:00:00</h1>
     </div>
 
-    <div id="list">
-        <div style="border: 1px solid black;" class="time">
-            <span class="time__top">
-                <h2>Hurakan</h2>
-                <p class="time__tempo">00:00:00</p>
-            </span>
-            <hr class="separacao">
-            <span class="time__bottom">
-                <p id=${nome} class="time__voltas">Voltas: 00</p>
-                <button>-</button>
-            </span>
+    <div class="meio">
+        <div id="list">
+            <div style="border: 1px solid black;" class="time">
+                <span class="time__top">
+                    <h2>Hurakan</h2>
+                    <p class="time__tempo">00:00:00</p>
+                </span>
+                <hr class="separacao">
+                <span class="time__bottom">
+                    <p id=${nome} class="time__voltas">Voltas: 00</p>
+                    <button>-</button>
+                </span>
+            </div>
+        </div>
+        <div id="tempos">
+            <p>oi</p>
         </div>
     </div>
-    <button onclick="iniciar()">Começar</button>
-    <div id="tempos">
-        <p>oi</p>
+    <div class="bottom">
+        <button onclick="iniciar()">Começar</button>
+        <!-- <button onclick="iniciar()">Pausar</button> -->
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
