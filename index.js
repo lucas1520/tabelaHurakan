@@ -78,7 +78,12 @@ app.get("/addVolta", async (req, res) => {
     fs.writeFile("dados.json", JSON.stringify(info, null, 2), "utf-8")
 })
 
+let comecou = 0 
 app.get("/iniciar", (req, res) => {
+    if (comecou){ 
+        console.log("Ja comecou")
+        return 0
+    }
     inicio = process.hrtime.bigint()
 
     Object.entries(times).forEach((elem) => {
@@ -96,5 +101,6 @@ app.get("/iniciar", (req, res) => {
             io.emit("tempoTime", elem[0], Number(elem[1].tempoVolta) / 1e9)
         })
     }, 100)
+    comecou = 1
 })
 
