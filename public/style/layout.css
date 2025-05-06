@@ -3,6 +3,11 @@
     text-align: center;
 }
 
+.meio {
+    margin-bottom: 2vh;
+    /* background-color: red; */
+}
+
 #list {
     display: inline-flex;
     flex-direction: column;
@@ -49,4 +54,8 @@
 #tempos {
     display: inline-flex;
     flex-direction: column;
+}
+
+.bottom {
+    text-align: center;
 }
