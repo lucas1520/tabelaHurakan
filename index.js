@@ -52,6 +52,16 @@ let times = {
     }
 }
 
+const atualizaPosicoes = (info) => {
+    let posicoes = [];
+    Object.entries(info).forEach((elem) => {
+        posicoes.push({nome: elem[1].nome, nVoltas: elem[1].nVoltas})
+    })
+
+    posicoes.sort((a, b) => b.nVoltas - a.nVoltas)
+    return posicoes
+}
+
 app.get("/addVolta", async (req, res) => {
     let info = await fs.readFile("dados.json", "utf-8")
     // Info e uma string JSON
@@ -61,6 +71,8 @@ app.get("/addVolta", async (req, res) => {
     const nomeV = req.query.nome
 
     info[nomeV].nVoltas++
+
+    let posicoes = atualizaPosicoes(info)
 
     const tempoVolta = process.hrtime.bigint()
     const diff = tempoVolta - times[nomeV].tempoInicialVolta
@@ -74,9 +86,14 @@ app.get("/addVolta", async (req, res) => {
         info[nomeV].melhorTempo = diffConvertido
     }
 
-    res.send(String(info[nomeV].nVoltas))
+    // res.send(String(info[nomeV].nVoltas), posicoes)
+    res.send({
+        nVoltas: info[nomeV].nVoltas,
+        posicoes
+    })
     fs.writeFile("dados.json", JSON.stringify(info, null, 2), "utf-8")
 })
+
 let interval
 let comecou = 0 
 app.get("/iniciar", (req, res) => {

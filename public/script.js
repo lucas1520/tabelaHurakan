@@ -51,7 +51,17 @@ const adicionar = (nomeId) => {
         }).
         then((resp) => {
             console.log(resp)
-            document.getElementById("volta_" + nomeId).textContent = `Voltas: ${String(resp).padStart(2, "0")}`
+            document.getElementById("volta_" + nomeId).textContent = `Voltas: ${String(resp.nVoltas).padStart(2, "0")}`
+            let numero = 1
+            document.getElementById("posicoes").innerHTML = ""
+            resp.posicoes.forEach((elem) => {
+                let timePos = document.createElement("p")
+                timePos.innerHTML = `
+                    <p>${numero}. ${elem.nome}</p>
+                `
+                document.getElementById("posicoes").append(timePos)
+                numero++
+            })
         })
 }
 
