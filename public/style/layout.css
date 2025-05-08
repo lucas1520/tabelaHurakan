@@ -56,6 +56,11 @@
     flex-direction: column;
 }
 
+#posicoes {
+    display: inline-flex;
+    flex-direction: column;
+}
+
 .bottom {
     text-align: center;
 }
