@@ -24,7 +24,13 @@ app.get("/pegarDados", async (req, res) => {
     data = JSON.parse(data)
     // Agora e um objeto js
 
-    res.send(data)
+    let posicoes = atualizaPosicoes(data)
+
+    // res.send(data)
+    res.send({
+        data,
+        posicoes
+    })
 })
 
 let inicio

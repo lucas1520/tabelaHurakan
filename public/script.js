@@ -43,6 +43,23 @@ const construir = (nome, nVoltas, nomeId) => {
     document.getElementById("list").append(container)
 }
 
+const atualizaPosicoes = (posicoes) => {
+    let numero = 0
+    let voltasAnterior = -9999
+    document.getElementById("posicoes").innerHTML = ""
+    posicoes.forEach((elem) => {
+        if (voltasAnterior != elem.nVoltas) {
+            numero++
+        }
+        let timePos = document.createElement("p")
+        timePos.innerHTML = `
+            <p>${numero}. ${elem.nome}</p>
+        `
+        document.getElementById("posicoes").append(timePos)
+        voltasAnterior = elem.nVoltas
+    })
+}
+
 const adicionar = (nomeId) => {
     fetch(`/addVolta?nome=${encodeURIComponent(nomeId)}`).
         then((res) => {
@@ -52,20 +69,7 @@ const adicionar = (nomeId) => {
         then((resp) => {
             console.log(resp)
             document.getElementById("volta_" + nomeId).textContent = `Voltas: ${String(resp.nVoltas).padStart(2, "0")}`
-            let numero = 0
-            let voltasAnterior = -9999
-            document.getElementById("posicoes").innerHTML = ""
-            resp.posicoes.forEach((elem) => {
-                if (voltasAnterior != elem.nVoltas) {
-                    numero++
-                }
-                let timePos = document.createElement("p")
-                timePos.innerHTML = `
-                    <p>${numero}. ${elem.nome}</p>
-                `
-                document.getElementById("posicoes").append(timePos)
-                voltasAnterior = elem.nVoltas
-            })
+            atualizaPosicoes(resp.posicoes)
         })
 }
 
@@ -82,11 +86,12 @@ fetch("/pegarDados").
         return response.json()
     }).
     then((res) => {
-        let a = Object.entries(res)
+        console.log(res)
+        let a = Object.entries(res.data)
         console.log(a)
         a.forEach((elem) => {
             console.log(elem)
             construir(elem[1].nome, elem[1].nVoltas, elem[0])
-
         })
+        atualizaPosicoes(res.posicoes)
     })
