@@ -52,15 +52,19 @@ const adicionar = (nomeId) => {
         then((resp) => {
             console.log(resp)
             document.getElementById("volta_" + nomeId).textContent = `Voltas: ${String(resp.nVoltas).padStart(2, "0")}`
-            let numero = 1
+            let numero = 0
+            let voltasAnterior = -9999
             document.getElementById("posicoes").innerHTML = ""
             resp.posicoes.forEach((elem) => {
+                if (voltasAnterior != elem.nVoltas) {
+                    numero++
+                }
                 let timePos = document.createElement("p")
                 timePos.innerHTML = `
                     <p>${numero}. ${elem.nome}</p>
                 `
                 document.getElementById("posicoes").append(timePos)
-                numero++
+                voltasAnterior = elem.nVoltas
             })
         })
 }
