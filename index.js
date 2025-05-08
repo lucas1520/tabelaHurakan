@@ -77,7 +77,7 @@ app.get("/addVolta", async (req, res) => {
     res.send(String(info[nomeV].nVoltas))
     fs.writeFile("dados.json", JSON.stringify(info, null, 2), "utf-8")
 })
-
+let interval
 let comecou = 0 
 app.get("/iniciar", (req, res) => {
     if (comecou){ 
@@ -90,7 +90,7 @@ app.get("/iniciar", (req, res) => {
         elem[1].tempoInicialVolta = inicio
     })
 
-    setInterval(() => {
+    interval = setInterval(() => {
         const agora = process.hrtime.bigint()
         const diff = agora - inicio
     
@@ -104,3 +104,7 @@ app.get("/iniciar", (req, res) => {
     comecou = 1
 })
 
+app.get("/parar", (req, res) => {
+    clearInterval(interval)
+    comecou = 0
+})

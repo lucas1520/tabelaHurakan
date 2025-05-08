@@ -58,7 +58,9 @@ const adicionar = (nomeId) => {
 const iniciar = () => {
     fetch("/iniciar")
 }
-
+const parar = () => {
+    fetch("/parar")
+}
 fetch("/pegarDados").
     then((response) => {
         console.log(response)
