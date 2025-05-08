@@ -4,7 +4,9 @@
 }
 
 .meio {
+    display: flex;
     margin-bottom: 2vh;
+    justify-content: space-between;
     /* background-color: red; */
 }
 
@@ -59,6 +61,7 @@
 #posicoes {
     display: inline-flex;
     flex-direction: column;
+    /* align-self:self-end; */
 }
 
 .bottom {
